@@ -64,6 +64,7 @@ public class IndexControllerTest {
         rec.setId(3L);
         recipes.add(rec);
 
+
         when(recipeService.getRecipes()).thenReturn(recipes);
 
         ArgumentCaptor<Set<Recipe>> captor = ArgumentCaptor.forClass(Set.class);
