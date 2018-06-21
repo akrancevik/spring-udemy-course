@@ -29,7 +29,7 @@ public class RecipeServiceImplTest {
     public void setup(){
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, null, null);
 
     }
 
