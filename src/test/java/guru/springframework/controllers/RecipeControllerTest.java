@@ -6,7 +6,6 @@ package guru.springframework.controllers;
 import guru.springframework.commands.RecipeCommand;
 import guru.springframework.domain.Recipe;
 import guru.springframework.exceptions.NotFoundException;
-import guru.springframework.repositories.RecipeRepository;
 import guru.springframework.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +40,9 @@ public class RecipeControllerTest {
 
         MockitoAnnotations.initMocks(this);
         controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExeptionHandler())
+                .build();
     }
 
     @Test
@@ -97,9 +98,9 @@ public class RecipeControllerTest {
     }
 
     @Test
-    public void testGetRecipeNNumberFormat() throws Exception {
+    public void testGetRecipeNumberFormat() throws Exception {
 
-        mockMvc.perform(get("/recipe/asdfshow"))
+        mockMvc.perform(get("/recipe/asdf/show"))
                 .andExpect(status().isBadRequest())
                 .andExpect(view().name("400error"));
     }
